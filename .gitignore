@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+cache.mv.db
+cache.trace.db
+src/main/resources/json/
+.gitignore
