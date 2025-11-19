@@ -13,8 +13,8 @@ public class CreateProcessor implements MessageProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateProcessor.class);
 
     @Override
-    public boolean canProcess(@NonNull final String messageType) {
-        return MessageType.CREATE.name().equalsIgnoreCase(messageType);
+    public boolean canProcess(@NonNull final MessageType messageType) {
+        return MessageType.CREATE == messageType;
     }
 
     @Override

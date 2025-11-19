@@ -63,8 +63,8 @@ class EmbeddedKafkaIntegrationTest {
         } while (consumedMessage != null);
 
         assertTrue(capturedOutput.getOut().contains("Processing CREATE message: " + createMessage));
-        assertTrue(capturedOutput.getOut().contains("Processing READ message: " + createMessage));
-        assertTrue(capturedOutput.getOut().contains("Processing UPDATE message: " + createMessage));
-        assertTrue(capturedOutput.getOut().contains("Processing DELETE message: " + createMessage));
+        assertTrue(capturedOutput.getOut().contains("Processing READ message: " + readMessage));
+        assertTrue(capturedOutput.getOut().contains("Processing UPDATE message: " + updateMessage));
+        assertTrue(capturedOutput.getOut().contains("Processing DELETE message: " + deleteMessage));
     }
 }

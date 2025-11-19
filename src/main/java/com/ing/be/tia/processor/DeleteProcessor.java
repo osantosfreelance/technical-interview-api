@@ -13,8 +13,8 @@ public class DeleteProcessor implements MessageProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProcessor.class);
 
     @Override
-    public boolean canProcess(@NonNull final String messageType) {
-        return MessageType.DELETE.name().equalsIgnoreCase(messageType);
+    public boolean canProcess(@NonNull final MessageType messageType) {
+        return MessageType.DELETE == messageType;
     }
 
     @Override

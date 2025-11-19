@@ -13,8 +13,8 @@ public class UpdateProcessor implements MessageProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(UpdateProcessor.class);
 
     @Override
-    public boolean canProcess(@NonNull final String messageType) {
-        return MessageType.UPDATE.name().equalsIgnoreCase(messageType);
+    public boolean canProcess(@NonNull final MessageType messageType) {
+        return MessageType.UPDATE == messageType;
     }
 
     @Override

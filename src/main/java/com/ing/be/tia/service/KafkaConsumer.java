@@ -19,6 +19,7 @@ public class KafkaConsumer {
     private final ArrayBlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
     private final ObjectMapper mapper;
 
+    // HINT: might need to inject more dependencies here
     @Autowired
     public KafkaConsumer(final ObjectMapper mapper) {
         this.mapper = mapper;
@@ -27,7 +28,8 @@ public class KafkaConsumer {
     @KafkaListener(topics = "${spring.kafka.topic}")
     public void receive(ConsumerRecord<?, String> consumerRecord) throws JsonProcessingException {
         LOGGER.info("received payload='{}'", consumerRecord);
-        queue.offer(mapper.readValue(consumerRecord.value(), Message.class));
+        final var message = mapper.readValue(consumerRecord.value(), Message.class);
+        queue.offer(message);
 
         // TODO: add message handling to trigger processors. Do not use SWITCH-CASE or IF-ELSE.
         // See EmbeddedKafkaIntegrationTest.performActionsFromMultipleMessagesInAnyOrder()

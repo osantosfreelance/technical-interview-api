@@ -7,6 +7,16 @@ public record Message(
         String content
 ) {
     @Override
+    public MessageType type() {
+        return type;
+    }
+
+    @Override
+    public String content() {
+        return content;
+    }
+
+    @Override
     public String toString() {
         return "{ \"type\":\"" + type + "\", \"content\":\"" + content + "\" }";
     }
