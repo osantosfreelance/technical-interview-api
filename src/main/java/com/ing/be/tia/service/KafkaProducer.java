@@ -1,5 +1,6 @@
 package com.ing.be.tia.service;
 
+import com.ing.be.tia.data.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class KafkaProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public KafkaProducer(final KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(final String topic, final String payload) {
+    public void send(final String topic, final Message payload) {
         LOGGER.info("sending payload='{}' to topic='{}'", payload, topic);
-        kafkaTemplate.send(topic, payload);
+        kafkaTemplate.send(topic, payload.toString());
     }
 }
