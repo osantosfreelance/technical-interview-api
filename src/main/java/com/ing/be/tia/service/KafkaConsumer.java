@@ -33,6 +33,8 @@ public class KafkaConsumer {
 
         // TODO: add message handling to trigger processors. Do not use SWITCH-CASE or IF-ELSE.
         // See EmbeddedKafkaIntegrationTest.performActionsFromMultipleMessagesInAnyOrder()
+        // HINT: use Facade Design Pattern to delegate message processing to appropriate processor.
+        // HINT: you have to create a new class for that.
     }
 
     public ArrayBlockingQueue<Message> getQueue() {
