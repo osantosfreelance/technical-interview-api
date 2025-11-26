@@ -18,8 +18,7 @@ public class MessageProcessorFacade {
     /**
      * Delegates the given {@link Message} to the first {@link MessageProcessor}
      * that indicates it can process the message's type.
-     * <p>
-     * No SWITCH-CASE or IF-ELSE is used; instead, the correct processor is
+     * The correct processor is
      * dynamically selected based on the {@link MessageProcessor#canProcess}
      * contract.
      *
