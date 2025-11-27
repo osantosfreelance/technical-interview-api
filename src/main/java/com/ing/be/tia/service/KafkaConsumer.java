@@ -3,6 +3,7 @@ package com.ing.be.tia.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ing.be.tia.data.Message;
+import com.ing.be.tia.facade.MessageProcessorFacade;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +19,14 @@ public class KafkaConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
     private final ArrayBlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
     private final ObjectMapper mapper;
+    private final MessageProcessorFacade facade;
+
 
     // HINT: might need to inject more dependencies here
     @Autowired
-    public KafkaConsumer(final ObjectMapper mapper) {
+    public KafkaConsumer(final ObjectMapper mapper, MessageProcessorFacade facade) {
         this.mapper = mapper;
+        this.facade = facade;
     }
 
     @KafkaListener(topics = "${spring.kafka.topic}")
@@ -35,6 +39,7 @@ public class KafkaConsumer {
         // See EmbeddedKafkaIntegrationTest.performActionsFromMultipleMessagesInAnyOrder()
         // HINT: use Facade Design Pattern to delegate message processing to appropriate processor.
         // HINT: you have to create a new class for that.
+        facade.process(message);
     }
 
     public ArrayBlockingQueue<Message> getQueue() {
